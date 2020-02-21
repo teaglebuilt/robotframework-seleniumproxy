@@ -30,10 +30,20 @@ class BrowserKeywords(LibraryComponent):
         pass
 
     def _make_new_browser(self, url=None, browser='chrome', alias=None):
+        logger.console(url)
         driver = self._make_driver(browser)
         logger.console(driver)
         driver = self._wrap_event_firing_webdriver(driver)
+        logger.console(dir(driver))
         index = self.ctx.register_driver(driver, alias)
+        if is_truthy(url):
+            try:
+                driver.get(url)
+            except Exception:
+                self.debug("Opened browser with session id %s but failed to open url '%s'." % (
+                    driver.session_id, url))
+                raise
+        self.debug('Opened browser with session id %s.' % driver.session_id)
         return index
 
     def _wrap_event_firing_webdriver(self, driver):
@@ -43,4 +53,7 @@ class BrowserKeywords(LibraryComponent):
         return EventFiringWebDriver(driver, self.ctx.event_firing_webdriver())
 
     def _make_driver(self, browser):
-        return webdriver.Chrome(options={'ssl_verify': False})
+        driver = webdriver.Chrome(options={'ssl_verify': False})
+        driver.set_script_timeout(self.ctx.timeout)
+        driver.implicitly_wait(self.ctx.implicit_wait)
+        return driver

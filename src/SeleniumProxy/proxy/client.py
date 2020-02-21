@@ -6,6 +6,8 @@ import json
 import logging
 import threading
 
+log = logging.getLogger(__name__)
+
 
 class ProxyClient:
 
