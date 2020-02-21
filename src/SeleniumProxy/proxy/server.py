@@ -1,8 +1,6 @@
 import os
 import socket
 from urllib.request import _parse_proxy
-
-from .modifier import RequestModifier
 from .proxy2 import ThreadingHTTPServer
 from .storage import RequestStorage
 
@@ -13,9 +11,6 @@ class ProxyHTTPServer(ThreadingHTTPServer):
     def __init__(self, *args, proxy_config=None, options=None, **kwargs):
         # Each server instance gets its own storage
         self.storage = RequestStorage()
-
-        # Each server instance gets a request modifier
-        self.modifier = RequestModifier()
 
         # The server's upstream proxy configuration (if any)
         self.proxy_config = self._sanitise_proxy_config(

@@ -1,4 +1,4 @@
-from proxy2 import ProxyRequestHandler
+from .proxy2 import ProxyRequestHandler
 import socket
 
 

@@ -3,12 +3,15 @@ from SeleniumLibrary.keywords import BrowserManagementKeywords
 from robot.api import logger
 from robot.utils import is_truthy
 from SeleniumProxy import webdriver
+from SeleniumProxy.logger import get_logger
 
 
 class BrowserKeywords(LibraryComponent):
 
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
+        self.logger = get_logger("SeleniumProxy")
+        self.logger.debug("BrowserKeywords_{}".format(ctx))
         self.manager = BrowserManagementKeywords(ctx)
 
     @keyword
@@ -28,8 +31,10 @@ class BrowserKeywords(LibraryComponent):
 
     def _make_new_browser(self, url=None, browser='chrome', alias=None):
         driver = self._make_driver(browser)
+        logger.console(driver)
         driver = self._wrap_event_firing_webdriver(driver)
-        self.ctx.register_driver(driver, alias)
+        index = self.ctx.register_driver(driver, alias)
+        return index
 
     def _wrap_event_firing_webdriver(self, driver):
         if not self.ctx.event_firing_webdriver:
@@ -38,4 +43,4 @@ class BrowserKeywords(LibraryComponent):
         return EventFiringWebDriver(driver, self.ctx.event_firing_webdriver())
 
     def _make_driver(self, browser):
-        return webdriver.Chrome()
+        return webdriver.Chrome(options={'ssl_verify': False})
