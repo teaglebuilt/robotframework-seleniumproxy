@@ -14,11 +14,21 @@ import ssl
 import sys
 import threading
 import urllib.parse
+from SeleniumProxy.logger import get_logger, kwargstr, argstr
 from http.client import HTTPConnection, HTTPSConnection
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from socketserver import ThreadingMixIn
-
 from . import cert
+import wrapt
+
+
+@wrapt.decorator
+def log_wrapper(wrapped, instance, args, kwargs):
+    instance.logger.debug("{}({}) [ENTERING]".format(
+        wrapped.__name__, ", ".join([argstr(args), kwargstr(kwargs)])))
+    ret = wrapped(*args, **kwargs)
+    instance.logger.debug("{}() [LEAVING]".format(wrapped.__name__))
+    return ret
 
 
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
@@ -43,7 +53,7 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         self.tls = threading.local()
         self.tls.conns = {}
-
+        self.logger = get_logger("SeleniumProxy")
         super().__init__(*args, **kwargs)
 
     def log_error(self, format_, *args):

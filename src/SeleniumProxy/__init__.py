@@ -1,5 +1,6 @@
 from SeleniumLibrary import SeleniumLibrary
 from SeleniumProxy.keywords import BrowserKeywords
+from .listener import SeleniumProxyListener
 from .logger import get_logger
 
 
@@ -15,4 +16,5 @@ class SeleniumProxy(SeleniumLibrary):
                                  event_firing_webdriver=None)
         self.logger = get_logger("SeleniumProxy")
         self.logger.debug("__init__()")
+        self.event_firing_webdriver = SeleniumProxyListener
         self.add_library_components([BrowserKeywords(self)])

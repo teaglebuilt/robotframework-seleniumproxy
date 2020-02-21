@@ -1,9 +1,19 @@
 from SeleniumLibrary.base import LibraryComponent, keyword
 from SeleniumLibrary.keywords import BrowserManagementKeywords
-from robot.api import logger
+from selenium.webdriver.support.events import EventFiringWebDriver
 from robot.utils import is_truthy
 from SeleniumProxy import webdriver
-from SeleniumProxy.logger import get_logger
+from SeleniumProxy.logger import get_logger, kwargstr, argstr
+import wrapt
+
+
+@wrapt.decorator
+def log_wrapper(wrapped, instance, args, kwargs):
+    instance.logger.debug("{}({}) [ENTERING]".format(
+        wrapped.__name__, ", ".join([argstr(args), kwargstr(kwargs)])))
+    ret = wrapped(*args, **kwargs)
+    instance.logger.debug("{}() [LEAVING]".format(wrapped.__name__))
+    return ret
 
 
 class BrowserKeywords(LibraryComponent):
@@ -14,6 +24,7 @@ class BrowserKeywords(LibraryComponent):
         self.logger.debug("BrowserKeywords_{}".format(ctx))
         self.manager = BrowserManagementKeywords(ctx)
 
+    @log_wrapper
     @keyword
     def open_proxy_browser(self, url=None, browser='chrome', alias=None):
         index = self.drivers.get_index(alias)
@@ -30,11 +41,8 @@ class BrowserKeywords(LibraryComponent):
         pass
 
     def _make_new_browser(self, url=None, browser='chrome', alias=None):
-        logger.console(url)
         driver = self._make_driver(browser)
-        logger.console(driver)
         driver = self._wrap_event_firing_webdriver(driver)
-        logger.console(dir(driver))
         index = self.ctx.register_driver(driver, alias)
         if is_truthy(url):
             try:
