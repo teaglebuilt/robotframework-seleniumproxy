@@ -15,7 +15,7 @@ class BrowserKeywords(LibraryComponent):
         self.manager = BrowserManagementKeywords(ctx)
 
     @keyword
-    def open_browser(self, url=None, browser='chrome', alias=None):
+    def open_proxy_browser(self, url=None, browser='chrome', alias=None):
         index = self.drivers.get_index(alias)
         if index:
             self.info('Using existing browser from index %s.' % index)

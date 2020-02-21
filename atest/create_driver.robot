@@ -4,5 +4,5 @@ Library  SeleniumProxy
 
 *** Test Cases ***
 Create Driver Instance
-    Open Browser  https://www.duckduckgo.com
-    
+    Open Proxy Browser  https://www.duckduckgo.com  Chrome
+    Close All Browsers

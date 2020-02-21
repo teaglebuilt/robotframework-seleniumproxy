@@ -35,7 +35,7 @@ class RequestStorage:
             base_dir = os.path.expanduser('~')
 
         self._storage_dir = os.path.join(
-            base_dir, '.seleniumwire', 'storage-{}'.format(str(uuid.uuid4())))
+            base_dir, '.seleniumproxy', 'storage-{}'.format(str(uuid.uuid4())))
         os.makedirs(self._storage_dir)
         self._cleanup_old_dirs()
 
