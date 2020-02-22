@@ -65,6 +65,7 @@ class ProxyClient:
         connection.request(command, url, **args)
         try:
             response = connection.getresponse()
+            self.logger.debug("response", response.read())
             if response.status != 200:
                 raise ProxyException(
                     'Proxy returned status code {} for {}'.format(response.status, url))

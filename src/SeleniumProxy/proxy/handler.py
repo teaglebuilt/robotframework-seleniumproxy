@@ -48,8 +48,11 @@ class CaptureRequestHandler(ClientMixin, ProxyRequestHandler):
 
     @log_wrapper
     def request_handler(self, request, request_body):
-        self.logger.debug(request, request_body)
+        self.logger.debug("request_handler", request, request_body)
         self.server.storage.save_request(request, request_body)
+
+    def response_handler(self, request, request_body, response, response_body):
+        self.logger.debug("response_handler", response, response_body)
 
     @property
     def certdir(self):
