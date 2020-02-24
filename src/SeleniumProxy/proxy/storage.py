@@ -34,8 +34,7 @@ class RequestStorage:
         if base_dir is None:
             base_dir = os.path.expanduser('~')
 
-        self._storage_dir = os.path.join(
-            base_dir, '.seleniumproxy', 'storage-{}'.format(str(uuid.uuid4())))
+        self._storage_dir = os.path.join(base_dir, '.seleniumwire', 'storage-{}'.format(str(uuid.uuid4())))
         os.makedirs(self._storage_dir)
         self._cleanup_old_dirs()
 
@@ -102,8 +101,7 @@ class RequestStorage:
         if indexed_request is None:
             # Request has been cleared from storage before
             # the response arrived back
-            log.debug(
-                'Cannot save response as request {} is no longer stored'.format(request_id))
+            log.debug('Cannot save response as request {} is no longer stored'.format(request_id))
             return
 
         response_data = {
@@ -256,8 +254,7 @@ class RequestStorage:
             self._index.clear()
 
         for indexed_request in index:
-            shutil.rmtree(self._get_request_dir(
-                indexed_request.id), ignore_errors=True)
+            shutil.rmtree(self._get_request_dir(indexed_request.id), ignore_errors=True)
 
     def find(self, path, check_response=True):
         """Find the first request that contains the specified path.

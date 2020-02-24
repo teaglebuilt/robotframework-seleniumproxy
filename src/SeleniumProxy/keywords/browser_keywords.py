@@ -61,7 +61,7 @@ class BrowserKeywords(LibraryComponent):
         return EventFiringWebDriver(driver, self.ctx.event_firing_webdriver())
 
     def _make_driver(self, browser):
-        driver = webdriver.Chrome(options={'ssl_verify': False})
+        driver = webdriver.Chrome(seleniumwire_options={'ssl_verify': False})
         driver.set_script_timeout(self.ctx.timeout)
         driver.implicitly_wait(self.ctx.implicit_wait)
         return driver

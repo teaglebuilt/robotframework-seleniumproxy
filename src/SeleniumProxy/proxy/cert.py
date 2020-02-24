@@ -53,10 +53,13 @@ def generate(hostname, certdir):
             with open(extpath, 'w') as ext:
                 ext.write(DEFAULT_OPENSSL_CONF % hostname)
 
-            new_cert_req = ['req', '-new', '-key', CERTKEY, '-subj', '/CN=%s' % hostname]
+            new_cert_req = ['req', '-new', '-key',
+                            CERTKEY, '-subj', '/CN=%s' % hostname]
             if os.name == 'nt':
-                openssl = os.path.join(os.path.dirname(__file__), 'win', 'openssl.exe')
-                new_cert_req += ['-config', os.path.join(os.path.dirname(__file__), 'win', 'openssl.cnf')]
+                openssl = os.path.join(os.path.dirname(
+                    __file__), 'win', 'openssl.exe')
+                new_cert_req += ['-config',
+                                 os.path.join(os.path.dirname(__file__), 'win', 'openssl.cnf')]
             else:
                 openssl = 'openssl'
             new_cert_req.insert(0, openssl)
