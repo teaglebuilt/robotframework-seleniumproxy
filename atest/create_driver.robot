@@ -6,4 +6,3 @@ Resource  keywords.robot
 Create Driver Instance
     Open Proxy Browser  https://www.duckduckgo.com  Chrome
     Close All Browsers
-    Kill Proxy Server

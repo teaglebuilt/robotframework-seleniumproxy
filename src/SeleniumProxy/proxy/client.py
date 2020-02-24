@@ -1,4 +1,4 @@
-from .handler import CaptureRequestHandler
+from .handler import CaptureRequestHandler, ADMIN_PATH
 from .server import ProxyHTTPServer
 from SeleniumProxy.logger import get_logger, kwargstr, argstr
 import http.client
@@ -58,14 +58,16 @@ class ProxyClient:
 
     @log_wrapper
     def _make_request(self, command, path, data=None):
-        url = "{}{}".format('http://seleniumproxy', path)
+        url = "{}{}".format(ADMIN_PATH, path)
         connection = http.client.HTTPConnection(
             self.proxy_address, self.proxy_port)
         args = {}
+        if data is not None:
+            args['body'] = json.dumps(data).encode('utf-8')
+
         connection.request(command, url, **args)
         try:
             response = connection.getresponse()
-            self.logger.debug("response", response.read())
             if response.status != 200:
                 raise ProxyException(
                     'Proxy returned status code {} for {}'.format(response.status, url))

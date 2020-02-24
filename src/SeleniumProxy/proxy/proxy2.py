@@ -54,6 +54,7 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
         self.tls = threading.local()
         self.tls.conns = {}
         self.logger = get_logger("SeleniumProxy")
+        self.logger.debug("Proxy2 __init__")
         super().__init__(*args, **kwargs)
 
     def log_error(self, format_, *args):

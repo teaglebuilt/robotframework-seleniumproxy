@@ -4,6 +4,7 @@ from urllib.parse import parse_qs, urlparse
 import socket
 import logging
 import wrapt
+import json
 
 
 @wrapt.decorator
@@ -15,9 +16,14 @@ def log_wrapper(wrapped, instance, args, kwargs):
     return ret
 
 
-class ClientMixin:
+ADMIN_PATH = 'http://seleniumwire'
 
-    def client_handler(self):
+
+class AdminMixin:
+
+    admin_path = ADMIN_PATH
+
+    def admin_handler(self):
         parse_result = urlparse(self.path)
         path, params = parse_result.path, parse_qs(parse_result.query)
 
@@ -32,8 +38,25 @@ class ClientMixin:
         self._send_response(json.dumps(self.server.storage.load_requests()).encode(
             'utf-8'), 'application/json')
 
+    def _get_request_body(self, request_id):
+        body = self.server.storage.load_request_body(request_id[0])
+        self._send_body(body)
 
-class CaptureRequestHandler(ClientMixin, ProxyRequestHandler):
+    def _get_response_body(self, request_id):
+        body = self.server.storage.load_response_body(request_id[0])
+        self._send_body(body)
+
+    def _send_response(self, body, content_type):
+        self.send_response(200)
+        self.send_header('Content-Type', content_type)
+        self.send_header('Content-Length', len(body))
+        self.end_headers()
+        if isinstance(body, str):
+            body = body.encode('utf-8')
+        self.wfile.write(body)
+
+
+class CaptureRequestHandler(AdminMixin, ProxyRequestHandler):
 
     def __init__(self, *args, **kwargs):
         self.logger = get_logger("SeleniumProxy")
