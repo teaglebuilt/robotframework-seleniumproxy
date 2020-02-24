@@ -2,7 +2,6 @@ from SeleniumProxy.logger import get_logger, kwargstr, argstr
 from SeleniumLibrary import SeleniumLibrary
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.support.events import AbstractEventListener
-from robot.api import logger
 import wrapt
 
 

@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from os.path import abspath, dirname, join
+from os.path import abspath, dirname
 
 CWD = abspath(dirname(__file__))
 

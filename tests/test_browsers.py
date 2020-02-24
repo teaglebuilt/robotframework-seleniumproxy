@@ -1,5 +1,4 @@
 from SeleniumProxy import webdriver
-import os
 from unittest import TestCase
 import logging
 
