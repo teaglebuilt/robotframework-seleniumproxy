@@ -1,19 +1,10 @@
 import os
 import socket
-from SeleniumProxy.logger import get_logger, argstr, kwargstr
 from urllib.request import _parse_proxy
+
+from .modifier import RequestModifier
 from .proxy2 import ThreadingHTTPServer
 from .storage import RequestStorage
-import wrapt
-
-
-@wrapt.decorator
-def log_wrapper(wrapped, instance, args, kwargs):
-    instance.logger.debug("{}({}) [ENTERING]".format(
-        wrapped.__name__, ", ".join([argstr(args), kwargstr(kwargs)])))
-    ret = wrapped(*args, **kwargs)
-    instance.logger.debug("{}() [LEAVING]".format(wrapped.__name__))
-    return ret
 
 
 class ProxyHTTPServer(ThreadingHTTPServer):
@@ -22,8 +13,10 @@ class ProxyHTTPServer(ThreadingHTTPServer):
     def __init__(self, *args, proxy_config=None, options=None, **kwargs):
         # Each server instance gets its own storage
         self.storage = RequestStorage()
-        self.logger = get_logger("SeleniumProxy")
-        self.logger.debug("Server __init__")
+
+        # Each server instance gets a request modifier
+        self.modifier = RequestModifier()
+
         # The server's upstream proxy configuration (if any)
         self.proxy_config = self._sanitise_proxy_config(
             self._merge_with_env(proxy_config or {}))
