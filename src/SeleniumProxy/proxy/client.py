@@ -190,7 +190,7 @@ class AdminClient:
         return self._make_request('GET', '/rewrite_rules')
 
     def set_scopes(self, scopes):
-        """Sets the scopes for the seleniumwire to log/modify request and response.
+        """Sets the scopes for the seleniumproxy to log/modify request and response.
 
         Args:
             scopes: a regex string or list of regex string.

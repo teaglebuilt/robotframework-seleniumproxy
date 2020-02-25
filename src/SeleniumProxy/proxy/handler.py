@@ -9,7 +9,7 @@ from SeleniumProxy.proxy.proxy2 import ProxyRequestHandler
 
 log = logging.getLogger(__name__)
 
-ADMIN_PATH = 'http://seleniumwire'
+ADMIN_PATH = 'http://seleniumproxy'
 
 
 class AdminMixin:
