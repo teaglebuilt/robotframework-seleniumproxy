@@ -7,6 +7,11 @@ def robot(ctx):
 
 
 @task
+def unit(ctx):
+    ctx.run("nosetests tests")
+
+
+@task
 def lint(ctx):
     ctx.run("flake8")
 
