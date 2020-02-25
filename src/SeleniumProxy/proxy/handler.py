@@ -4,8 +4,8 @@ import re
 import socket
 from urllib.parse import parse_qs, urlparse
 
-from .util import is_list_alike
-from .proxy2 import ProxyRequestHandler
+from SeleniumProxy.proxy.util import is_list_alike
+from SeleniumProxy.proxy.proxy2 import ProxyRequestHandler
 
 log = logging.getLogger(__name__)
 

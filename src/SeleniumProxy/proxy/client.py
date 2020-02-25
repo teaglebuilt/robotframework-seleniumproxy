@@ -4,7 +4,7 @@ import logging
 import threading
 from urllib.parse import quote_plus
 
-from .handler import ADMIN_PATH, CaptureRequestHandler, create_custom_capture_request_handler
+from SeleniumProxy.proxy.handler import ADMIN_PATH, CaptureRequestHandler, create_custom_capture_request_handler
 from SeleniumProxy.proxy.server import ProxyHTTPServer
 
 log = logging.getLogger(__name__)
