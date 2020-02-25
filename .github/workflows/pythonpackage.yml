@@ -25,7 +25,7 @@ jobs:
         run: |
           pip install flake8
           # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --ignore=E501,C0301,W504,F401 --exclude=.git,__pycache__,env, src/SeleniumProxy/_version.py, versioneer.py --show-source --statistics
+          flake8 . --count --ignore=E501,C0301,W504,F401,W605 --exclude=.git,__pycache__,env, src/SeleniumProxy/_version.py, versioneer.py --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run Unit Tests
