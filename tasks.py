@@ -97,7 +97,7 @@ def changelog(ctx, version=None):
 
 @task
 def release(ctx, version=None):
-    assert version != None
+    assert version is not None
     changelog(ctx, version)
     docs(ctx)
     ctx.run("git add docs/* {}".format(CHANGELOG))
