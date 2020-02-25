@@ -13,7 +13,7 @@ class BrowserIntegrationTest(TestCase):
         driver = webdriver.Chrome(seleniumwire_options={'ssl_verify': False})
         driver.get(url)
 
-        request = driver.requests
+        request = driver.wait_for_request(url)
 
         self.assertEqual(request.response.status_code, 200)
         self.assertIn('text/html', request.response.headers['Content-Type'])
