@@ -18,8 +18,6 @@ Topic :: Software Development :: Testing
 License :: OSI Approved :: MIT License
 Programming Language :: Python :: 3.7
 Programming Language :: Python :: 3.8
-Framework:: Robot Framework
-Framework:: Robot Framework:: Library
 """.strip().splitlines()
 
 setup(
