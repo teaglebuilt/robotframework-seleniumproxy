@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 class BrowserIntegrationTest(TestCase):
 
     def test_chrome_can_access_requests(self):
-        url = 'https://cardatonce.eftsource.com/'
+        url = 'https://duckduckgo.com/'
         driver = webdriver.Chrome(seleniumwire_options={'ssl_verify': False})
         driver.get(url)
 
