@@ -11,6 +11,17 @@ with open(join(CWD, "requirements.txt"), encoding="utf-8") as f:
 with open(join(CWD, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
+CLASSIFIERS = """
+Development Status :: 4 - Beta
+Intended Audience :: Developers
+Topic :: Software Development :: Testing
+License :: OSI Approved :: MIT License
+Programming Language :: Python :: 3.7
+Programming Language :: Python :: 3.8
+Framework:: Robot Framework
+Framework:: Robot Framework:: Library
+""".strip().splitlines()
+
 setup(
     name="robotframework-seleniumproxy",
     version=versioneer.get_version(),
@@ -21,16 +32,7 @@ setup(
     author="Dillan Teagle",
     author_email="dillan@teaglebuilt.com",
     url="https://github.com/teaglebuilt/robotframework-seleniumproxy",
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Framework:: Robot Framework',
-        'Framework:: Robot Framework:: Library'
-    ],
+    classifiers=CLASSIFIERS,
     install_requires=REQUIREMENTS,
     keywords="selenium webdriver proxy robotframework seleniumlibrary network activity request response",
     license="MIT",

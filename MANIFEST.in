@@ -1,0 +1,5 @@
+include *.md LICENSE requirements.txt CHANGELOG
+recursive-include docs *.html
+recursive-include src *.py
+include versioneer.py
+include src/SeleniumProxy/_version.py
