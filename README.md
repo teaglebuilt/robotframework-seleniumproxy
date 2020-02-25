@@ -1,6 +1,6 @@
 # SeleniumProxy
 
-![Docker Build](https://github.com/teaglebuilt/robotframework-seleniumproxy/workflows/pythonpackage.yml/badge.svg)
+![Build](https://github.com/teaglebuilt/robotframework-seleniumproxy/workflows/Python%20package/badge.svg)
 
 A library for RobotFramework that extends SeleniumLibrary.
 
