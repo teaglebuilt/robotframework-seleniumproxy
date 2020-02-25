@@ -28,16 +28,6 @@ jobs:
           flake8 . --count --ignore=E501,C0301,W504,F401 --exclude=.git,__pycache__,env, src/SeleniumProxy/_version.py --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Download and install chromedriver
-        run: |
-          wget -q "https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip" -O /tmp/chromedriver.zip 
-          unzip /tmp/chromedriver.zip -d /usr/bin/
-          rm /tmp/chromedriver.zip
-      - name: Download and install geckodriver
-        run: |
-          wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz 
-          tar zxf /tmp/geckodriver.tgz -C /usr/bin/
-          rm /tmp/geckodriver.tgz
       - name: Run Unit Tests
         run: |
           pip install nose
