@@ -1,6 +1,8 @@
 *** Settings ***
-Library   SeleniumProxy
+Library   SeleniumProxy    event_firing_webdriver=${EXECDIR}/lib/DriverListener.py
+Library   RobotListener
 Resource  keywords.robot
+
 
 *** Test Cases ***
 Create Driver Instance
