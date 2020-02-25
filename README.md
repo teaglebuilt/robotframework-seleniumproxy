@@ -1,6 +1,13 @@
 # SeleniumProxy
 
+![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fteaglebuilt)
+![GitHub stars](https://img.shields.io/github/stars/teaglebuilt/robotframework-seleniumproxy?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/teaglebuilt/robotframework-seleniumproxy?style=social)
+![GitHub followers](https://img.shields.io/github/followers/teaglebuilt?style=social)
+
 ![Build](https://github.com/teaglebuilt/robotframework-seleniumproxy/workflows/Python%20package/badge.svg)
+![PyPI - Version](https://img.shields.io/pypi/v/robotframework-seleniumproxy)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/robotframework-seleniumproxy)
 
 A library for RobotFramework that extends [SeleniumLibrary](https://github.com/robotframework/SeleniumLibrary).
 
@@ -24,6 +31,8 @@ Seleniums webdriver browser type is a class which is inherited and extended to g
 Robotframeworks seleniumlibrary is extended to add several keywords for creating the webdriver with the given functionality and still capable of using the keywords available
 
 # CREDITS
+
+Credits of code or ideas I have used in this project.
 
 [Jani Mikkonen](http://github.com/rasjani)
 
