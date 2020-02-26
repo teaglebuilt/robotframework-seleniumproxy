@@ -19,6 +19,14 @@ SeleniumProxy inherits seleniums webdriver and captures all network activity gen
 
 Proxy Server is launched in the background with a proxy client added to the webdriver class that adds the methods needed to interact with the proxy server at run time.
 
+[Pypi](https://pypi.org/project/robotframework-seleniumproxy/0.0.2/)
+
+```
+
+pip install robotframework-seleniumproxy
+
+```
+
 # How it works.
 
 [Proxy2](https://github.com/inaz2/proxy2) runs the proxy server
