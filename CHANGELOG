@@ -1,3 +1,18 @@
+* Wed Feb 26 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.2
+- trigger build (rev.fa048481)
+- :construction_worker: github actions (rev.7a129bfb)
+- :construction_worker: github actions (rev.fcad25fd)
+- 3.6 and up (rev.bb6d48a0)
+- :egg: add class for http keywords (rev.0380f3f7)
+- :construction_worker: add workflow for building source and deploy to pypi server (rev.e73f215a)
+- :ambulance: add listener acceptance tests (rev.e227d386)
+- :white_check_mark: add tests (rev.4f5032c3)
+- fix python3.8 build (rev.81bea3d4)
+- :rotating_light: flake8 errors (rev.82348655)
+- :green_apple: macos gh build (rev.3daff80d)
+- deploy docs to gh (rev.2e4a226c)
+- :rocket: add link to pypi repo (rev.a13bbf31)
+
 * Tue Feb 25 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.1
 - pypi errors (rev.004702d9)
 - :rocket: publish to pypi (rev.8ebdaf21)
