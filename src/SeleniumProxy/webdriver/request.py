@@ -1,25 +1,24 @@
 from collections import OrderedDict
 from collections.abc import Mapping, MutableMapping
+from SeleniumProxy.logger import get_logger, kwargstr, argstr
+from selenium.common.exceptions import TimeoutException
+import wrapt
 import time
 
-from selenium.common.exceptions import TimeoutException
+
+@wrapt.decorator
+def log_wrapper(wrapped, instance, args, kwargs):
+    instance.logger.debug("{}({}) [ENTERING]".format(
+        wrapped.__name__, ", ".join([argstr(args), kwargstr(kwargs)])))
+    ret = wrapped(*args, **kwargs)
+    instance.logger.debug("{}() [LEAVING]".format(wrapped.__name__))
+    return ret
 
 
 class InspectRequestsMixin:
-    """Mixin class that provides functions to inspect and modify browser requests."""
 
     @property
     def requests(self):
-        """Retrieves the requests made between the browser and server.
-
-        Captured requests can be cleared with 'del', e.g:
-
-            del firefox.requests
-
-        Returns:
-            A list of Request instances representing the requests made
-            between the browser and server.
-        """
         return [Request(r, self._client) for r in self._client.get_requests()]
 
     @requests.deleter
@@ -28,14 +27,6 @@ class InspectRequestsMixin:
 
     @property
     def last_request(self):
-        """Retrieve the last request made between the browser and server.
-
-        Note that this is more efficient than running requests[-1]
-
-        Returns:
-            A Request instance representing the last request made, or
-            None if no requests have been made.
-        """
         data = self._client.get_last_request()
 
         if data is not None:
@@ -43,24 +34,8 @@ class InspectRequestsMixin:
 
         return None
 
+    @log_wrapper
     def wait_for_request(self, path, timeout=10):
-        """Wait up to the timeout period for a request with the specified
-        path to be seen.
-
-        The path can be can be any substring of the full request URL.
-        If a request is not seen before the timeout then a TimeoutException
-        is raised. Only requests with corresponding responses are considered.
-
-        Args:
-            path: The path of the request to look for.
-            timeout: The maximum time to wait in seconds. Default 10s.
-
-        Returns:
-            The request.
-        Raises:
-            TimeoutException if a request is not seen within the timeout
-                period.
-        """
         start = time.time()
 
         while time.time() - start < timeout:
@@ -72,6 +47,21 @@ class InspectRequestsMixin:
                 time.sleep(0.2)
 
         raise TimeoutException('Timed out after {}s waiting for request {}'.format(timeout, path))
+
+    @log_wrapper
+    def wait_for_response(self, path, timeout=10):
+        start = time.time()
+
+        while time.time() - start < timeout:
+            request = self._client.find(path)
+
+            if request is not None:
+                req = Request(request, self._client)
+                return req.response
+            else:
+                time.sleep(0.2)
+
+        raise TimeoutException('Timed out after {}s waiting for response {}'.format(timeout, path))
 
     @property
     def header_overrides(self):
@@ -200,6 +190,8 @@ class Response:
             data: The dictionary of data.
             client: The proxy client instance.
         """
+        self.logger = get_logger("SeleniumProxy")
+        self.logger.debug("Data {}".format(data))
         self._request_id = request_id
         self._client = client
         self._data = data

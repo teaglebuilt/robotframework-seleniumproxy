@@ -1,5 +1,5 @@
 from SeleniumLibrary import SeleniumLibrary
-from SeleniumProxy.keywords import BrowserKeywords
+from SeleniumProxy.keywords import BrowserKeywords, HTTPKeywords
 from robot.utils import is_truthy
 from .logger import get_logger
 
@@ -18,4 +18,4 @@ class SeleniumProxy(SeleniumLibrary):
         self.logger.debug("__init__()")
         if is_truthy(event_firing_webdriver):
             self.event_firing_webdriver = self._parse_listener(event_firing_webdriver)
-        self.add_library_components([BrowserKeywords(self)])
+        self.add_library_components([BrowserKeywords(self), HTTPKeywords(self)])

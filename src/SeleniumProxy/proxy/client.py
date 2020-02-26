@@ -79,34 +79,6 @@ class AdminClient:
         self._proxy.server_close()  # Closes the server socket
 
     def get_requests(self):
-        """Returns the requests currently captured by the proxy server.
-
-        The data is returned as a list of dictionaries in the format:
-
-        [{
-            'id': 'request id',
-            'method': 'GET',
-            'path': 'http://www.example.com/some/path',
-            'headers': {
-                'Accept': '*/*',
-                'Host': 'www.example.com'
-            },
-            'response': {
-                'status_code': 200,
-                'reason': 'OK',
-                'headers': {
-                    'Content-Type': 'text/plain',
-                    'Content-Length': '15012'
-                }
-            }
-        }, ...]
-
-        Note that the value of the 'response' key may be None where no response
-        is associated with a given request.
-
-        Returns:
-            A list of request dictionaries.
-        """
         return self._make_request('GET', '/requests')
 
     def get_last_request(self):
@@ -145,14 +117,6 @@ class AdminClient:
         return self._make_request('GET', '/request_body?request_id={}'.format(request_id)) or None
 
     def get_response_body(self, request_id):
-        """Returns the body of the response associated with the request with the
-        specified request_id.
-
-        Args:
-            request_id: The request identifier.
-        Returns:
-            The binary response body, or None if the response has no body.
-        """
         return self._make_request('GET', '/response_body?request_id={}'.format(request_id)) or None
 
     def set_header_overrides(self, headers):
