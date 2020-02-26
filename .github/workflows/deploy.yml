@@ -1,8 +1,9 @@
 name: Python package
 
 on:
-  release:
-    type: published
+  push:
+    tags:
+      - "v*"
 
 jobs:
   test:
@@ -32,6 +33,7 @@ jobs:
 
   deploy:
     name: Build & Deploy Package
+    needs: release
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
