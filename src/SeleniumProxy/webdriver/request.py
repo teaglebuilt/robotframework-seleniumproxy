@@ -57,7 +57,7 @@ class InspectRequestsMixin:
 
             if request is not None:
                 req = Request(request, self._client)
-                return req.response
+                return req.response.body
             else:
                 time.sleep(0.2)
 

@@ -22,16 +22,33 @@ class HTTPKeywords(LibraryComponent):
     @log_wrapper
     @keyword
     def get_requests(self):
+        """
+        Get all Requests as a list upon arrival to path.
+        """
         return self.driver.requests
 
     @log_wrapper
     @keyword
-    def wait_for_request(self, url):
-        request = self.driver.wait_for_request(url)
+    def wait_for_request(self, url, timeout=10):
+        """"
+        Wait for a request by the url address/path
+        ``url`` https://duckduckgo.com
+        ``timeout`` default is 10 seconds
+        Example:
+        | Wait For Request | https://duckduckgo.com | timeout=30
+        """
+        request = self.driver.wait_for_request(url, timeout)
         return request
 
     @log_wrapper
     @keyword
     def wait_for_response(self, url):
+        """"
+        Wait for a request by the url address/path
+        ``url`` https://duckduckgo.com
+        ``timeout`` default is 10 seconds
+        Example:
+        | Wait For Response | https://python.org/about | timeout=30
+        """
         response = self.driver.wait_for_response(url)
         return response

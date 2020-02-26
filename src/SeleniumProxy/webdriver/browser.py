@@ -22,11 +22,8 @@ class Firefox(InspectRequestsMixin, _Firefox):
     """Extends the Firefox webdriver to provide additional methods for inspecting requests."""
 
     def __init__(self, *args, options=None, **kwargs):
-        """Initialise a new Firefox WebDriver instance.
-
-        Args:
-            options: The seleniumproxy options dictionary.
-        """
+        self.logger = get_logger("SeleniumProxy")
+        self.logger.info("GeckoDriver __init__")
         if options is None:
             options = {}
 
@@ -56,7 +53,7 @@ class Firefox(InspectRequestsMixin, _Firefox):
         super().__init__(*args, **kwargs)
 
     def quit(self):
-        self.client.destroy_proxy()
+        self._client.destroy_proxy()
         super().quit()
 
 
@@ -66,6 +63,7 @@ class Chrome(InspectRequestsMixin, _Chrome):
     def __init__(self, *args, options=None, **kwargs):
         self.logger = get_logger("SeleniumProxy")
         self.logger.info("ChromeDriver __init__")
+        self.logger.info("options {} {} {}".format(options, argstr(args), kwargstr(kwargs)))
         if options is None:
             options = {}
 
@@ -91,70 +89,6 @@ class Chrome(InspectRequestsMixin, _Chrome):
             capabilities['acceptInsecureCerts'] = True
 
             kwargs['desired_capabilities'] = capabilities
-
-        super().__init__(*args, **kwargs)
-
-    def quit(self):
-        self._client.destroy_proxy()
-        super().quit()
-
-
-class Safari(InspectRequestsMixin, _Safari):
-    """Extends the Safari webdriver to provide additional methods for inspecting requests."""
-
-    def __init__(self, options=None, *args, **kwargs):
-        """Initialise a new Safari WebDriver instance.
-
-        Args:
-            options: The seleniumproxy options dictionary.
-        """
-        if options is None:
-            options = {}
-
-        # Safari does not support automatic proxy configuration through the
-        # DesiredCapabilities API, and thus has to be configured manually.
-        # Whatever port number is chosen for that manual configuration has to
-        # be passed in the options.
-        assert 'port' in options, 'You must set a port number in the options'
-
-        self._client = AdminClient()
-        self._client.create_proxy(
-            port=options.pop('port', 0),
-            proxy_config=options.pop('proxy', None),
-            options=options
-        )
-
-        super().__init__(*args, **kwargs)
-
-    def quit(self):
-        self._client.destroy_proxy()
-        super().quit()
-
-
-class Edge(InspectRequestsMixin, _Edge):
-    """Extends the Edge webdriver to provide additional methods for inspecting requests."""
-
-    def __init__(self, options=None, *args, **kwargs):
-        """Initialise a new Edge WebDriver instance.
-
-        Args:
-            options: The seleniumproxy options dictionary.
-        """
-        if options is None:
-            options = {}
-
-        # Edge does not support automatic proxy configuration through the
-        # DesiredCapabilities API, and thus has to be configured manually.
-        # Whatever port number is chosen for that manual configuration has to
-        # be passed in the options.
-        assert 'port' in options, 'You must set a port number in the options'
-
-        self._client = AdminClient()
-        self._client.create_proxy(
-            port=options.pop('port', 0),
-            proxy_config=options.pop('proxy', None),
-            options=options
-        )
 
         super().__init__(*args, **kwargs)
 

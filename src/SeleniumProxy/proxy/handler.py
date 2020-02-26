@@ -194,20 +194,13 @@ class CaptureRequestHandler(AdminMixin, ProxyRequestHandler):
         self.server.storage.save_request(req, req_body)
 
     def response_handler(self, req, req_body, res, res_body):
-        """Captures a response and its body that relate to a previous request.
 
-        Args:
-            req: The original request (an instance of CaptureRequestHandler).
-            req_body: The body of the original request.
-            res: The response (a http.client.HTTPResponse instance) that corresponds to the request.
-            res_body: The binary response body.
-        """
         if not hasattr(req, 'id'):
             # Request was not stored
             return
 
         log.info('Capturing response: %s %s %s',
-                 req.path, res.status, res.reason)
+                 req.path, res.status, res_body)
         self.server.storage.save_response(req.id, res, res_body)
 
     @property
