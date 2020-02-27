@@ -1,15 +1,11 @@
-* Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.6
+* Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- change event trigger to deploy (rev.6978114b)
+- change event trigger to deploy (rev.eab4ed88)
 - change event trigger to deploy (rev.765418ce)
 - change event trigger to deploy (rev.6ba3ca76)
-
-* Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.5
 - add 3.6 (rev.39c396c6)
-
-* Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.4
 - :green_heart: switch deploy job to run on ubuntu in github action (rev.493b8b81)
 - :bulb: documenting code (rev.16aa9635)
-
-* Wed Feb 26 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
 - update readme (rev.4fe2c03d)
 
 * Wed Feb 26 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.2
