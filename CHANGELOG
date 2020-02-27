@@ -1,4 +1,5 @@
 * Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- remove (rev.b1259fb1)
 - add gh action (rev.54cc3e4a)
 - change event trigger to deploy (rev.6978114b)
 - change event trigger to deploy (rev.eab4ed88)
