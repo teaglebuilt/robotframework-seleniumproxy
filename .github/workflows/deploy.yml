@@ -3,7 +3,7 @@ name: Python package
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
   test:
