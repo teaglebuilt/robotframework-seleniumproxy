@@ -1,9 +1,9 @@
 name: Python package
 
 on:
-  push:
-    tags:
-      - "*"
+  release:
+    types:
+      - created
 
 jobs:
   test:
