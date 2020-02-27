@@ -1,3 +1,7 @@
+* Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.6
+- change event trigger to deploy (rev.765418ce)
+- change event trigger to deploy (rev.6ba3ca76)
+
 * Thu Feb 27 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.5
 - add 3.6 (rev.39c396c6)
 
