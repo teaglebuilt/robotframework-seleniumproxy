@@ -3,7 +3,7 @@ name: Python package
 on:
   release:
     types:
-      - published
+      - created
 
 jobs:
   test:
@@ -33,7 +33,6 @@ jobs:
 
   deploy:
     name: Build & Deploy Package
-    needs: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
