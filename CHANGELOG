@@ -1,4 +1,5 @@
 * Fri Feb 28 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- ditch third party action (rev.1f291fa5)
 - remove conditional for deploy job (rev.4780bf27)
 - remove (rev.b1259fb1)
 - add gh action (rev.54cc3e4a)
