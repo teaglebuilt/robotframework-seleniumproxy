@@ -1,4 +1,5 @@
 * Fri Feb 28 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- ditch third party action (rev.ab3ad0fe)
 - ditch third party action (rev.9db450b0)
 - ditch third party action (rev.1f291fa5)
 - remove conditional for deploy job (rev.4780bf27)
