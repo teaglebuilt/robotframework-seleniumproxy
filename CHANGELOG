@@ -1,4 +1,6 @@
 * Sun Mar 01 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- rm (rev.81f536b7)
+- change release task to add dist folder then commit (rev.85f4a300)
 - add step (rev.d5658cef)
 - add dist (rev.eaafff5b)
 - change step (rev.0f76c0aa)
