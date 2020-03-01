@@ -1,4 +1,5 @@
 * Sun Mar 01 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- add dist (rev.eaafff5b)
 - change step (rev.0f76c0aa)
 - the majority of the commits to this repo have just been for debugging task automation (rev.3fe1ec0b)
 - remove step (rev.5efbfba3)
