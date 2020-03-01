@@ -1,4 +1,5 @@
-* Fri Feb 28 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+* Sun Mar 01 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- the majority of the commits to this repo have just been for debugging task automation (rev.3fe1ec0b)
 - remove step (rev.5efbfba3)
 - ditch third party action (rev.ab3ad0fe)
 - ditch third party action (rev.9db450b0)
