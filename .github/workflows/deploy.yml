@@ -42,7 +42,7 @@ jobs:
       - name: pre-reqs
         run: pip install twine wheel
       - name: Publish distribution 📦 to PyPI
-        run: python -m twine upload/dist/* --verbose
+        run: twine upload --repository-url https://upload.pypi.org/legacy/ dist/* --verbose
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
