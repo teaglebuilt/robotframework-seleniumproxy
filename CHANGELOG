@@ -1,4 +1,5 @@
-* Sun Mar 01 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+* Sun Mar 01 2020 dillan teagle <dillan.teagle.va@gmail.com> - 0.0.3
+- fix (rev.46f02e06)
 - rm (rev.81f536b7)
 - change release task to add dist folder then commit (rev.85f4a300)
 - add step (rev.d5658cef)
