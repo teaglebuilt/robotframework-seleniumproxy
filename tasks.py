@@ -103,5 +103,6 @@ def release(ctx, version=None):
     ctx.run("git add docs/* {}".format(CHANGELOG))
     ctx.run("git tag {}".format(version))
     build(ctx)
+    ctx.run("git rm -r --cached dist/")
     ctx.run("git add dist/*")
     ctx.run("git commit -m 'New Release {}'".format(version))

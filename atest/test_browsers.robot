@@ -1,5 +1,5 @@
 *** Settings ***
-Library   SeleniumProxy    event_firing_webdriver=${EXECDIR}/lib/DriverListener.py
+Library   SeleniumProxy    
 Library   Collections
 Library   BuiltIn
 Resource  keywords.robot
