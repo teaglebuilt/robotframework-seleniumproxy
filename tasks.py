@@ -1,6 +1,5 @@
 from invoke import task
 from pathlib import Path
-import versioneer
 import os
 import os.path
 import shutil
@@ -81,8 +80,6 @@ def clean(ctx):
 
 @task
 def build(ctx):
-    if versioneer.get_versions()["dirty"]:
-        raise Exception("dirty")
     ctx.run("python setup.py sdist")
 
 

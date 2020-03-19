@@ -1,7 +1,5 @@
-import versioneer
 from setuptools import setup, find_packages
 from os.path import abspath, dirname, join
-
 
 CWD = abspath(dirname(__file__))
 
@@ -23,8 +21,7 @@ Programming Language :: Python :: 3.8
 
 setup(
     name="robotframework-seleniumproxy",
-    version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    version="0.0.3",
     description="Capture requests/responses generated with Seleniums Webdriver",
     long_description=long_description,
     long_description_content_type="text/markdown",
