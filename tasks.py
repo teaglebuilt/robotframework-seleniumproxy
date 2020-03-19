@@ -1,5 +1,6 @@
 from invoke import task
 from pathlib import Path
+import versioneer
 import os
 import os.path
 import shutil
@@ -58,12 +59,10 @@ def compileProd(ctx):
 @task
 def clean(ctx):
     to_be_removed = [
-        "coverage_report/",
         "reports/",
-        "src/robotframework_seleniumtestability.egg-info/",
+        "__pycache__/",
+        "src/robotframework_seleniumproxy.egg-info/",
         "dist/",
-        "output.xml",
-        ".coveragedb",
         "*.html",
         "selenium-screenshot-*.png",
         "geckodriver.log",
@@ -82,6 +81,8 @@ def clean(ctx):
 
 @task
 def build(ctx):
+    if versioneer.get_versions()["dirty"]:
+        raise Exception("dirty")
     ctx.run("python setup.py sdist")
 
 
