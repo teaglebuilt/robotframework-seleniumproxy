@@ -1,6 +1,5 @@
 *** Settings ***
 Library   SeleniumProxy    event_firing_webdriver=${EXECDIR}/lib/DriverListener.py
-Library   RobotListener
 Resource  keywords.robot
 
 Test Teardown  Close All Browsers
