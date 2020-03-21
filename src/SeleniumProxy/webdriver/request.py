@@ -190,8 +190,6 @@ class Response:
             data: The dictionary of data.
             client: The proxy client instance.
         """
-        self.logger = get_logger("SeleniumProxy")
-        self.logger.debug("Data {}".format(data))
         self._request_id = request_id
         self._client = client
         self._data = data

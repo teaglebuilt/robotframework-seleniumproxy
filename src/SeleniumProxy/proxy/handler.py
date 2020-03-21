@@ -199,8 +199,8 @@ class CaptureRequestHandler(AdminMixin, ProxyRequestHandler):
             # Request was not stored
             return
 
-        log.info('Capturing response: %s %s %s',
-                 req.path, res.status, res_body)
+        log.info('Capturing response: %s %s',
+                 req.path, res.status)
         self.server.storage.save_response(req.id, res, res_body)
 
     @property
