@@ -1,4 +1,5 @@
 * Sun Mar 22 2020 Dillan Teagle <dillan.teagle.va@gmail.com> - 0.0.4
+- sync (rev.c409019c)
 - add tests for storage (rev.0569de7d)
 - remove response bodies from logs (rev.092125bc)
 
