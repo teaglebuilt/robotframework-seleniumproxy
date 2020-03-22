@@ -58,7 +58,7 @@ class AdminClient:
         self._proxy = ProxyHTTPServer((addr, port), self._capture_request_handler,
                                       proxy_config=proxy_config, options=options)
 
-        t = threading.Thread(name='Selenium Wire Proxy Server',
+        t = threading.Thread(name='Selenium Proxy Server',
                              target=self._proxy.serve_forever)
         t.daemon = not options.get('standalone')
         t.start()
