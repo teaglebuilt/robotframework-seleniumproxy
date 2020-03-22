@@ -2,7 +2,10 @@ from SeleniumLibrary import SeleniumLibrary
 from SeleniumProxy.keywords import BrowserKeywords, HTTPKeywords
 from robot.utils import is_truthy
 from .logger import get_logger
+from versioneer import get_version  # type: ignore
 
+__version__ = get_version()
+del get_version
 
 class SeleniumProxy(SeleniumLibrary):
 

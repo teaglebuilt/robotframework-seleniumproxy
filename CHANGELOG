@@ -1,4 +1,11 @@
+* Sun Mar 22 2020 Dillan Teagle <dillan.teagle.va@gmail.com> - 0.0.4
+- add tests for storage (rev.0569de7d)
+- remove response bodies from logs (rev.092125bc)
+
 * Thu Mar 19 2020 Dillan Teagle <dteagle@cpicardgroup.com> - 0.0.3
+- remove listener import from tests (rev.6fbca491)
+- remove listeners (rev.bffc656b)
+- :package: abandon versioneer (rev.e326a71a)
 - fix issues (rev.0c20a9a3)
 - logger (rev.8024f312)
 - restore (rev.5b88b043)
