@@ -22,7 +22,7 @@ Programming Language :: Python :: 3.8
 
 setup(
     name="robotframework-seleniumproxy",
-    version=versioneer.get_version(),
+    version=versioneer.get_versions(),
     cmdclass=versioneer.get_cmdclass(),
     description="Capture requests/responses generated with Seleniums Webdriver",
     long_description=long_description,
