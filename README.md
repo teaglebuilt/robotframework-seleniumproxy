@@ -38,6 +38,11 @@ OpenSSL is required for intercepting HTTPS connections.
 brew install openssl
 ```
 
+
+```
+pip install --upgrade certifi 
+```
+
 Seleniums webdriver browser type is a class which is inherited and extended to give the webdriver the ability to create a client proxy and store the activity within the webdriver.
 
 Robotframeworks seleniumlibrary is extended to add several keywords for creating the webdriver with the given functionality and still capable of using the keywords available
