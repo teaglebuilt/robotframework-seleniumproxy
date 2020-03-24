@@ -3,9 +3,9 @@ import logging
 import re
 import socket
 from urllib.parse import parse_qs, urlparse
-
 from SeleniumProxy.proxy.util import is_list_alike
 from SeleniumProxy.proxy.proxy2 import ProxyRequestHandler
+
 
 log = logging.getLogger(__name__)
 
@@ -170,7 +170,7 @@ class CaptureRequestHandler(AdminMixin, ProxyRequestHandler):
                 log.debug(str(e))
             else:
                 raise e
-
+    
     def request_handler(self, req, req_body):
         """Captures a request and its body.
 

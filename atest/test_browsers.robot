@@ -21,8 +21,10 @@ Create Firefox Driver Instance
 Create Chrome Driver With Options
     Set Selenium Timeout  15 sec
     ${options}=  Create Dictionary
-    ${false}=  Convert To Boolean  True
+    ${scopes}=  Create List  .*python.*
+    ${false}=  Convert To Boolean  False
     Set To Dictionary  ${options}  ssl_verify  ${false}
+    Set To Dictionary  ${options}  scopes  ${scopes}
     Log  ${options}
     Open Proxy Browser  https://www.python.org  Chrome  ${options}
     Wait Until Page Loads

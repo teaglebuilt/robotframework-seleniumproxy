@@ -1,4 +1,5 @@
 from SeleniumLibrary.base import LibraryComponent, keyword
+from SeleniumProxy.proxy.handler import CaptureRequestHandler
 from SeleniumProxy.logger import get_logger, kwargstr, argstr
 import wrapt
 
@@ -18,6 +19,7 @@ class HTTPKeywords(LibraryComponent):
         LibraryComponent.__init__(self, ctx)
         self.logger = get_logger("SeleniumProxy")
         self.logger.debug("HTTPKeywords_{}".format(ctx))
+       
 
     @log_wrapper
     @keyword
@@ -52,3 +54,8 @@ class HTTPKeywords(LibraryComponent):
         """
         response = self.driver.wait_for_response(url)
         return response
+
+    @log_wrapper
+    @keyword
+    def set_scope(self, scope_list):
+        self.driver._client.set_scopes(scope_list)

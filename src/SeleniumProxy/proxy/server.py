@@ -1,31 +1,28 @@
 import os
 import socket
 from urllib.request import _parse_proxy
-
+from SeleniumProxy.logger import get_logger, kwargstr, argstr
 from .modifier import RequestModifier
 from .proxy2 import ThreadingHTTPServer
 from .storage import RequestStorage
+
 
 
 class ProxyHTTPServer(ThreadingHTTPServer):
     address_family = socket.AF_INET
 
     def __init__(self, *args, proxy_config=None, options=None, **kwargs):
-        # Each server instance gets its own storage
+        self.logger = get_logger("SeleniumProxy")
+        self.logger.info("Server: {}".format(options))
         self.storage = RequestStorage()
-
-        # Each server instance gets a request modifier
         self.modifier = RequestModifier()
-
         # The server's upstream proxy configuration (if any)
         self.proxy_config = self._sanitise_proxy_config(
             self._merge_with_env(proxy_config or {}))
-
         # Additional proxy server configuration
-        self.options = options or {}
-
-        # A scope for proxy to be interested
+        self.options = options
         self.scopes = []
+        
 
         super().__init__(*args, **kwargs)
 

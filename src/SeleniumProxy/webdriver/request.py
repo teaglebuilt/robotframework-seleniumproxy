@@ -34,7 +34,7 @@ class InspectRequestsMixin:
 
         return None
 
-    @log_wrapper
+
     def wait_for_request(self, path, timeout=10):
         start = time.time()
 
@@ -48,7 +48,6 @@ class InspectRequestsMixin:
 
         raise TimeoutException('Timed out after {}s waiting for request {}'.format(timeout, path))
 
-    @log_wrapper
     def wait_for_response(self, path, timeout=10):
         start = time.time()
 

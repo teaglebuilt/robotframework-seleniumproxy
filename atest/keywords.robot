@@ -3,11 +3,6 @@ Library         Process
 
 
 *** Keywords ***
-Kill Proxy Server
-    ${pid}=  Get Process Object  chromedri
-    Log  ${pid} 
-    
-
 Wait Until Page Loads
     Wait Until Keyword Succeeds  ${PAGE_LOAD_TIMEOUT}  1 sec  _page is loaded
 

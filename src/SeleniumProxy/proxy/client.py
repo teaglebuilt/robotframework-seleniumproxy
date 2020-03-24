@@ -2,12 +2,21 @@ import http.client
 import json
 import logging
 import threading
+import wrapt
 from urllib.parse import quote_plus
-
+from SeleniumProxy.logger import get_logger, argstr, kwargstr
 from SeleniumProxy.proxy.handler import ADMIN_PATH, CaptureRequestHandler, create_custom_capture_request_handler
 from SeleniumProxy.proxy.server import ProxyHTTPServer
 
 log = logging.getLogger(__name__)
+
+# @wrapt.decorator
+# def log_wrapper(wrapped, instance, args, kwargs):
+#     instance.logger.debug("{}({}) [ENTERING]".format(
+#         wrapped.__name__, ", ".join([argstr(args), kwargstr(kwargs)])))
+#     ret = wrapped(*args, **kwargs)
+#     instance.logger.debug("{}() [LEAVING]".format(wrapped.__name__))
+#     return ret
 
 
 class AdminClient:
@@ -82,14 +91,6 @@ class AdminClient:
         return self._make_request('GET', '/requests')
 
     def get_last_request(self):
-        """Returns the last request captured by the proxy server.
-
-        This is more efficient than running get_requests()[-1]
-
-        Returns:
-            The last request as a dictionary or None if no requests have been
-            made.
-        """
         return self._make_request('GET', '/last_request')
 
     def clear_requests(self):
@@ -165,10 +166,12 @@ class AdminClient:
         """Reset scopes to let proxy capture all requests."""
         self._make_request('DELETE', '/scopes')
 
+    # @log_wrapper
     def get_scopes(self):
         """Gets any previously set scopes"""
         return self._make_request('GET', '/scopes')
 
+    # @log_wrapper
     def _make_request(self, command, path, data=None):
         url = '{}{}'.format(ADMIN_PATH, path)
         conn = http.client.HTTPConnection(self._proxy_addr, self._proxy_port)

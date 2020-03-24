@@ -109,4 +109,5 @@ class BrowserKeywords(LibraryComponent):
             raise Exception("Browser Type Not Available")
         driver.set_script_timeout(self.ctx.timeout)
         driver.implicitly_wait(self.ctx.implicit_wait)
+        driver.scopes = ['.*eftsource.*']
         return driver
